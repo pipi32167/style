@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /og.html
+
+Sitemap: https://style.million-ai.com/sitemap.xml

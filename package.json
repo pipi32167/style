@@ -1,0 +1,16 @@
+{
+  "name": "design-style-gallery",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Design Style Gallery — 81 种设计风格的 CSS 设计令牌与实现指南",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=style"
+  },
+  "devDependencies": {
+    "vite": "^7.1.0"
+  }
+}

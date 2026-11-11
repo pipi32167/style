@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Style Gallery — 81 种设计风格的 CSS 令牌与实现指南</title>
+<meta name="description" content="一份可落地的界面风格标本册：新拟态、玻璃拟态、粗野主义、包豪斯、蒸汽波、Dracula……81 种风格的配色、字体、圆角、阴影与组件令牌，附可复制的 CSS 与 Markdown 设计指导。">
+<link rel="canonical" href="https://style.million-ai.com/">
+<meta name="theme-color" content="#f1eee7">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Design Style Gallery">
+<meta property="og:title" content="Design Style Gallery — 81 种设计风格的 CSS 令牌">
+<meta property="og:description" content="把风格拆成设计令牌：81 种界面风格的配色、字体、形状与组件变量，附 Markdown 设计指导。">
+<meta property="og:url" content="https://style.million-ai.com/">
+<meta property="og:image" content="https://style.million-ai.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  // 在首屏绘制前定好主题，避免深色模式闪白
+  (function () {
+    try {
+      var q = new URLSearchParams(location.search).get('theme');
+      var saved = localStorage.getItem('dsg-theme');
+      var dark = q === 'dark' || (q !== 'light' && (saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches));
+      if (dark) document.documentElement.dataset.theme = 'dark';
+      if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Design Style Gallery",
+  "url": "https://style.million-ai.com/",
+  "description": "81 种界面设计风格的 CSS 设计令牌与 Markdown 实现指南。",
+  "isPartOf": { "@type": "WebSite", "name": "million-ai.com", "url": "https://million-ai.com/" }
+}
+</script>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="brand" href="/">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">Design Style Gallery</span>
+    <span class="brand-count" id="brandCount">81</span>
+  </a>
+  <div class="top-tools">
+    <label class="search">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="7" cy="7" r="4.6" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M10.6 10.6 14 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      <input id="search" type="search" placeholder="搜索风格、关键词…" autocomplete="off" spellcheck="false" aria-label="搜索风格">
+      <kbd>⌘K</kbd>
+    </label>
+    <button class="icon-btn" id="shuffleBtn" title="随机打开一种风格" aria-label="随机打开一种风格">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M2 4h3l6 8h3M2 12h3l2.2-2.9M11 4h3M12.6 2.4 14.4 4l-1.8 1.6M12.6 10.4 14.4 12l-1.8 1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="icon-btn" id="themeBtn" aria-label="切换明暗主题" title="切换明暗主题">
+      <svg id="themeIcon" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="3.2" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M8 .8v1.6M8 13.6v1.6M.8 8h1.6M13.6 8h1.6M2.9 2.9l1.1 1.1M12 12l1.1 1.1M13.1 2.9 12 4M4 12l-1.1 1.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="masthead">
+    <div>
+      <p class="kicker">Specimen Book / Vol.01 — <span id="heroCount">81</span> styles · <span data-token-count>55</span> tokens each</p>
+      <h1>把风格，拆成<em>设计令牌</em>。</h1>
+      <p class="lede">从新拟态到瑞士国际主义，从 Dracula 到 Windows 95。每张卡片都给出配色、字体、圆角与阴影的实际取值，并附一份可下载的 Markdown 设计指导。</p>
+    </div>
+    <dl class="masthead-stats" aria-label="收藏统计">
+      <div><dt>风格</dt><dd id="statStyles">81</dd></div>
+      <div><dt>类别</dt><dd id="statCats">08</dd></div>
+      <div><dt>令牌 / 种</dt><dd data-token-count>55</dd></div>
+      <div><dt>Markdown</dt><dd id="statMd">81</dd></div>
+    </dl>
+  </section>
+
+  <nav class="filters" aria-label="风格筛选">
+    <div class="chips" id="chips"></div>
+    <p class="filter-note" id="filterNote"></p>
+  </nav>
+
+  <section class="grid" id="grid" aria-live="polite" aria-busy="false"></section>
+  <p class="empty" id="empty" hidden>没有匹配的风格 —— <button id="resetFilter" type="button">清除筛选</button></p>
+
+  <footer class="foot">
+    <div>
+      <p class="kicker">Colophon</p>
+      <p>字体：Instrument Serif · Schibsted Grotesk · JetBrains Mono，全部自托管。无框架、无追踪，页面即数据。</p>
+    </div>
+    <p class="foot-meta">style.million-ai.com · 2026</p>
+  </footer>
+</main>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-veil" data-close></div>
+  <div class="sheet-panel" id="sheetPanel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1">
+    <div class="sheet-head">
+      <div>
+        <p class="kicker" id="sheetCat"></p>
+        <h2 id="sheetTitle"></h2>
+        <p class="sheet-en" id="sheetEn"></p>
+      </div>
+      <button class="x" type="button" data-close aria-label="关闭">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 3l10 10M13 3 3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="sheet-tabs" role="tablist" aria-label="详情视图">
+      <button class="tab" role="tab" data-tab="overview" aria-selected="true">概览</button>
+      <button class="tab" role="tab" data-tab="demo" aria-selected="false">应用示例</button>
+      <button class="tab" role="tab" data-tab="tokens" aria-selected="false">设计令牌</button>
+      <button class="tab" role="tab" data-tab="md" aria-selected="false">Markdown 指南</button>
+      <div class="sheet-actions">
+        <button class="mini-btn" id="copyCss" type="button">复制 CSS</button>
+        <a class="mini-btn" id="dlMd" href="#" download>下载 .md</a>
+      </div>
+    </div>
+
+    <div class="sheet-body" id="sheetBody"></div>
+
+    <div class="sheet-foot">
+      <button class="nav-btn" type="button" data-nav="-1" id="prevBtn">← <span></span></button>
+      <span class="sheet-pos" id="sheetPos"></span>
+      <button class="nav-btn" type="button" data-nav="1" id="nextBtn"><span></span> →</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

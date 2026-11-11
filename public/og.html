@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>OG · Design Style Gallery</title>
+<style>
+@font-face{font-family:"Instrument Serif";src:url("/assets/fonts/instrument-serif.woff2") format("woff2");font-weight:400;font-style:normal}
+@font-face{font-family:"Instrument Serif";src:url("/assets/fonts/instrument-serif-italic.woff2") format("woff2");font-weight:400;font-style:italic}
+@font-face{font-family:"Schibsted Grotesk";src:url("/assets/fonts/schibsted-grotesk.woff2") format("woff2");font-weight:400 700}
+@font-face{font-family:"JetBrains Mono";src:url("/assets/fonts/jetbrains-mono.woff2") format("woff2");font-weight:400 500}
+*{box-sizing:border-box;margin:0}
+html,body{width:1200px;height:630px}
+body{
+  background:#f1eee7;color:#14120f;overflow:hidden;position:relative;
+  font-family:"Schibsted Grotesk",ui-sans-serif,"PingFang SC",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+.rule{position:absolute;left:64px;right:64px;height:1px;background:#d9d3c6}
+.top{top:52px}.bottom{bottom:64px}
+.brand{position:absolute;left:64px;top:24px;display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;letter-spacing:-.01em}
+.mark{width:11px;height:11px;background:#d93a1f;border-radius:2px}
+.badge{font-family:"JetBrains Mono",monospace;font-size:9.5px;color:#8b8478;border:1px solid #d9d3c6;border-radius:999px;padding:1px 7px;translate:0 -2px}
+.left{position:absolute;left:64px;top:112px;width:600px}
+.kicker{margin-top:0;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8b8478}
+h1{margin-top:18px;font-size:78px;line-height:.98;letter-spacing:-.045em;font-weight:600}
+h1 em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;color:#d93a1f;letter-spacing:-.01em}
+.sub{margin-top:20px;font-size:15.5px;line-height:1.65;color:#514c43;max-width:560px}
+.meta{position:absolute;left:64px;bottom:84px;display:flex;gap:26px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8b8478}
+.meta b{color:#14120f;font-weight:500}
+.stage{position:absolute;right:64px;top:96px;width:436px;height:436px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(20,18,15,.10)}
+.tile .lbl{position:absolute;left:9px;top:8px;font-family:"JetBrains Mono",monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;opacity:.62;z-index:3}
+.tile .stageIn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:8px}
+.sh{width:44px;height:44px;flex:none}
+.fld{width:76px;height:22px;border-radius:6px;display:flex;align-items:center;padding:0 7px;font-size:8px;opacity:.8}
+/* 1 新拟态 */
+.t1{background:#e6e9f0;color:#3c4354}
+.t1 .sh{border-radius:50%;background:#e6e9f0;box-shadow:5px 5px 12px #c8ccd6,-5px -5px 12px #fff}
+.t1 .fld{background:#e6e9f0;box-shadow:inset 2px 2px 5px #cbcfd9,inset -2px -2px 5px #fff;border-radius:999px}
+/* 2 玻璃 */
+.t2{background:linear-gradient(135deg,#c7d2fe,#a5b4fc 32%,#67e8f9 68%,#f0abfc);color:#0f172a}
+.t2 .sh{border-radius:12px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);backdrop-filter:blur(8px)}
+.t2 .fld{background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.75);border-radius:999px}
+/* 3 装饰艺术 */
+.t3{background:#0f0f12;color:#f0e6d2}
+.t3 .sh{border-radius:50%;background:radial-gradient(circle at 32% 28%,#f6e9bd,#c9a227 52%,#8a6a1f);box-shadow:0 0 26px rgba(201,162,39,.45)}
+.t3 .fld{background:transparent;border:1px solid #3a3325;border-radius:0;color:#e8d9a0}
+/* 4 Dracula */
+.t4{background:#282a36;color:#f8f8f2}
+.t4 .sh{border-radius:6px;background:#bd93f9;box-shadow:0 0 22px rgba(189,147,249,.5)}
+.t4 .fld{background:#21222c;border:1px solid #44475a;border-radius:7px;color:#8b9bc7}
+.tile .mono{position:absolute;right:9px;bottom:7px;font-family:"JetBrains Mono",monospace;font-size:7.5px;letter-spacing:.1em;opacity:.45}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="brand"><span class="mark"></span>Design Style Gallery<span class="badge">81</span></div>
+<div class="rule top"></div>
+
+<div class="left">
+<p class="kicker">Specimen Book / Vol.01 — 81 styles · 55 tokens each</p>
+<h1>把风格，<br>拆成<em>设计令牌</em>。</h1>
+<p class="sub">新拟态、玻璃拟态、粗野主义、包豪斯、蒸汽波、Dracula……<br>配色、字体、圆角、阴影与组件变量，全部可复制。</p>
+</div>
+
+<div class="meta"><span><b>81</b> 种风格</span><span><b>08</b> 个类别</span><span><b>55</b> 个令牌</span><span><b>CSS</b> + <b>MD</b></span></div>
+<div class="rule bottom"></div>
+
+<div class="stage">
+  <div class="tile t1"><span class="lbl">新拟态</span><div class="stageIn"><span class="sh"></span><span class="fld">搜索</span></div><span class="mono">NEUMORPHISM</span></div>
+  <div class="tile t2"><span class="lbl">玻璃拟态</span><div class="stageIn"><span class="sh"></span><span class="fld">搜索</span></div><span class="mono">GLASSMORPHISM</span></div>
+  <div class="tile t3"><span class="lbl">装饰艺术</span><div class="stageIn"><span class="sh"></span><span class="fld">搜索</span></div><span class="mono">ART DECO</span></div>
+  <div class="tile t4"><span class="lbl">Dracula</span><div class="stageIn"><span class="sh"></span><span class="fld">搜索</span></div><span class="mono">DRACULA</span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.legacy-public/
+server.log
+.DS_Store
+*.log
